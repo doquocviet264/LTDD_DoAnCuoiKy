@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_color_background"
+    tools:context=".Activity.CategoryActivity">
+
+    <!-- Title and Back Button -->
+    <LinearLayout
+        android:id="@+id/titleAndBack"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:background="@drawable/title_background"
+        android:layout_gravity="top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.01"
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/back_btn_background"
+
+                android:src="@drawable/ic_back"/>
+
+            <!-- TabLayout -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutCategory"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.98"
+                android:background="@drawable/tab_background"
+                app:tabGravity="fill"
+                app:tabIndicator="@drawable/selected"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/backgroundBlack"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorGravity="stretch"
+                app:tabInlineLabel="true"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/backgroundBlack"
+                app:tabTextColor="@color/colorSupportText" />
+
+
+            <!-- Add Button -->
+            <ImageButton
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.01"
+                android:id="@+id/btnCategoryCreate"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/back_btn_background"
+                android:src="@drawable/ic_add"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- SearchView -->
+    <androidx.appcompat.widget.SearchView
+        android:layout_margin="10dp"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_background"
+        app:queryHint="Search here..."
+        app:iconifiedByDefault="false"/>
+
+    <!-- Info Text -->
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:text="Chọn để xem chi tiết hoặc chỉnh sửa"
+        android:gravity="center"/>
+
+    <!-- ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
