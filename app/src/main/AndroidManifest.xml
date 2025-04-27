@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDoAn"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".Activity.MainActivity"
@@ -58,7 +60,7 @@
             android:name=".Activity.BudgetActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.IntroActivity"
+            android:name=".CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.ResetPasswordActivity"
@@ -82,7 +84,7 @@
             android:name=".Activity.TransactionIncomeCreateActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarActivity"
+            android:name=".Activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

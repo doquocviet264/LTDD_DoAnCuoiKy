@@ -1,88 +1,102 @@
 package com.example.appdoan.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appdoan.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import com.example.appdoan.API.HTTPRequest;
+import com.example.appdoan.API.HTTPService;
+import com.example.appdoan.Container.Request.RegisterRequest;
+import com.example.appdoan.Container.Response.RegisterResponse;
+import com.example.appdoan.databinding.ActivityRegisterBinding;
+
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText regUsernameInput, regEmailInput, regPasswordInput, regConfirmPasswordInput;
-    private Button registerBtn;
-    private TextView loginText;
+
+    private ActivityRegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_activity);
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater()); // Inflate the layout
+        setContentView(binding.getRoot()); // Set content view using the binding object
 
-        // Ánh xạ view
-        regUsernameInput = findViewById(R.id.reg_username_input);
-        regEmailInput = findViewById(R.id.reg_email_input);
-        regPasswordInput = findViewById(R.id.reg_password_input);
-        regConfirmPasswordInput = findViewById(R.id.reg_confirm_password_input);
-        registerBtn = findViewById(R.id.register_btn);
-        loginText = findViewById(R.id.login_text);
+        Retrofit retrofit = HTTPService.getInstance();
+        HTTPRequest httpRequest = retrofit.create(HTTPRequest.class);
 
-        // Xử lý click nút đăng ký
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleRegister();
-            }
+
+
+        // Set Login click listener
+        binding.txtLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
 
-        // Xử lý click text đăng nhập
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish(); // Đóng màn hình đăng ký sau khi chuyển
+        // Register button click listener
+        binding.btnRegister.setOnClickListener(view -> {
+            String email = binding.edtEmail.getText().toString();
+            String firstname = binding.edtFirstname.getText().toString();
+            String lastname = binding.edtLastname.getText().toString();
+            String username = binding.edtUsername.getText().toString();
+            String password = binding.edtPassword.getText().toString();
+            String repassword = binding.edtRepassword.getText().toString();
+
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(firstname) || TextUtils.isEmpty(lastname)
+                    || TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(repassword)) {
+                showToast("Vui lòng điền đầy đủ thông tin!");
+            } else if (!password.equals(repassword)) {
+                showToast("Nhập lại mật khẩu không trùng khớp!");
+            } else if (!isValidEmail(email)) {
+                showToast("Địa chỉ email không hợp lệ!");
+            } else {
+                RegisterRequest registerUserRequest = new RegisterRequest(username, password, firstname, lastname, email, "USER", "");
+                Call<RegisterResponse> call = httpRequest.register(registerUserRequest);
+
+                call.enqueue(new Callback<RegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                        if (response.isSuccessful()) {
+                            RegisterResponse registerUserResponse = response.body();
+                            if ("Tài khoản đã tồn tại. Vui lòng nhập lại!".equals(registerUserResponse.getMessage())) {
+                                showToast("Username đã tồn tại. Vui lòng nhập lại!");
+                            } else if ("Email đã tồn tại. Vui lòng nhập lại!".equals(registerUserResponse.getMessage())) {
+                                showToast("Địa chỉ email đã được sử dụng!");
+                            } else {
+                                showToast("Đăng kí tài khoản thành công!");
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            }
+                        } else {
+                            showToast("Đăng ký tài khoản thất bại. Vui lòng kiểm tra lại!");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                        showToast("Lỗi kết nối!");
+                    }
+                });
             }
         });
     }
 
-    private void handleRegister() {
-        String username = regUsernameInput.getText().toString().trim();
-        String email = regEmailInput.getText().toString().trim();
-        String password = regPasswordInput.getText().toString().trim();
-        String confirmPassword = regConfirmPasswordInput.getText().toString().trim();
+    private void showToast(String message) {
+        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
 
-        // Validate dữ liệu
-        if (username.isEmpty()) {
-            regUsernameInput.setError("Vui lòng nhập tên đăng nhập");
-            return;
-        }
-
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            regEmailInput.setError("Email không hợp lệ");
-            return;
-        }
-
-        if (password.isEmpty() || password.length() < 6) {
-            regPasswordInput.setError("Mật khẩu phải có ít nhất 6 ký tự");
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            regConfirmPasswordInput.setError("Mật khẩu không khớp");
-            return;
-        }
-
-        // Nếu hợp lệ, xử lý đăng ký
-        Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-
-        // Sau khi đăng ký thành công có thể chuyển về màn hình đăng nhập
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+    // Kiểm tra định dạng email hợp lệ
+    private boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
