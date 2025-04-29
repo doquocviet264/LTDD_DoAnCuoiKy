@@ -9,29 +9,29 @@ public class MySharedPreferences {
     private static MySharedPreferences instance;
     private SharedPreferences mySharedPreferences;
 
-    // Khởi tạo đối tượng SharedPreferences chỉ một lần
-    public static void init(Context context) {
-        if (instance == null) {
+    public static void init(Context context)
+    {
+        if(instance == null)
+        {
             instance = new MySharedPreferences();
-            instance.mySharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE);
         }
+        instance.mySharedPreferences = context.getSharedPreferences("MyApp", context.MODE_PRIVATE);
     }
 
-    // Trả về đối tượng instance của MySharedPreferences
-    public static MySharedPreferences getInstance() {
+    public static MySharedPreferences getInstance()
+    {
         return instance;
     }
 
-    // Lưu token vào SharedPreferences
-    public void putToken(String token) {
+    public void putToken(String token)
+    {
         SharedPreferences.Editor editor = mySharedPreferences.edit();
         editor.putString(KEY_ACCESS_TOKEN, token);
-        editor.apply();  // Thay vì commit(), sử dụng apply() để tối ưu hóa.
+        editor.commit();
     }
 
-    // Lấy token từ SharedPreferences
-    public String getToken() {
+    public String getToken()
+    {
         return mySharedPreferences.getString(KEY_ACCESS_TOKEN, "");
-    }
-}
+    }}
 

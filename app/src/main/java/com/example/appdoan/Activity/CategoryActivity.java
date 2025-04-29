@@ -1,46 +1,88 @@
 package com.example.appdoan.Activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.appdoan.R;
-import com.example.appdoan.Adapter.CategoryAdapter;
+import com.example.appdoan.Adapter.CategoryViewAdapter;
+import com.example.appdoan.CategoryAddActivity;
+import com.example.appdoan.Fragment.CategoryExpenseFragment;
+import com.example.appdoan.Fragment.CategoryIncomeFragment;
+import com.example.appdoan.databinding.ActivityCategoryBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class CategoryActivity extends AppCompatActivity {
 
+    private ActivityCategoryBinding binding;
+    private CategoryViewAdapter categoryViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_category);
+        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        SearchView searchView = findViewById(R.id.searchView);
-        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchEditText.setTextColor(getResources().getColor(android.R.color.white)); // Màu chữ gõ vào
-        searchEditText.setHintTextColor(getResources().getColor(android.R.color.darker_gray)); // Màu chữ gợi ý
+        setupViewPager();
+        setupTabLayout();
+        setupListeners();
+    }
 
-        // Initialize TabLayout and ViewPager2
-        TabLayout tabLayout = findViewById(R.id.tabLayoutCategory);
-        ViewPager2 viewPager = findViewById(R.id.viewPagerCategory);
+    private void setupViewPager() {
+        categoryViewAdapter = new CategoryViewAdapter(this);
+        binding.viewPagerCategory.setAdapter(categoryViewAdapter);
+    }
 
-        // Set Adapter for ViewPager2
-        CategoryAdapter categoryAdapter = new CategoryAdapter(this);
-        viewPager.setAdapter(categoryAdapter);
+    private void setupTabLayout() {
+        new TabLayoutMediator(binding.tabLayoutCategory, binding.viewPagerCategory,
+                (tab, position) -> tab.setText(position == 0 ? "Thu nhập" : "Chi tiêu")
+        ).attach();
+    }
 
-        // Connect TabLayout with ViewPager2
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            if (position == 0) {
-                tab.setText("Thu nhập");
-            } else if (position == 1) {
-                tab.setText("Chi tiêu");
+    private void setupListeners() {
+        binding.btnBack.setOnClickListener(view -> onBackPressed()); // Trở lại trang trước
+
+        binding.btnCategoryCreate.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CategoryAddActivity.class);
+            startActivity(intent);
+        });
+
+
+        binding.searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
-        }).attach();
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                int currentPage = binding.tabLayoutCategory.getSelectedTabPosition();
+                if (currentPage == 0) {
+                    // Thu nhập
+                    CategoryIncomeFragment incomeFragment = (CategoryIncomeFragment) categoryViewAdapter.createFragment(currentPage);
+                    incomeFragment.filterCategoryIncome(text);
+                } else if (currentPage == 1) {
+                    // Chi tiêu
+                    CategoryExpenseFragment expenseFragment = (CategoryExpenseFragment) categoryViewAdapter.createFragment(currentPage);
+                    expenseFragment.filterCategoryExpense(text);
+                }
+                return true;
+            }
+        });
+        EditText searchEditText = binding.searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(Color.WHITE); // Màu chữ nhập vào
+        searchEditText.setHintTextColor(Color.LTGRAY); // Màu gợi ý "Search here..."
+
+        // (Tuỳ chọn) Đổi màu icon search và close cho đồng bộ nếu nền tối
+        ImageView searchIcon = binding.searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
+        ImageView closeIcon = binding.searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
+        searchIcon.setColorFilter(Color.WHITE);
+        closeIcon.setColorFilter(Color.WHITE);
     }
 }

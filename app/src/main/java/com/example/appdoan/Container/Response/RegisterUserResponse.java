@@ -1,6 +1,6 @@
 package com.example.appdoan.Container.Response;
 
-public class RegisterResponse {
+public class RegisterUserResponse {
     private boolean status;
     private String message;
     private UserInfoModel userInfoModel;

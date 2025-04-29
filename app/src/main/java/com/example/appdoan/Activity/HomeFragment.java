@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.appdoan.Adapter.CryptoWallerAdapter;
 import com.example.appdoan.Model.CryptoWallet;
+import com.example.appdoan.TransactionExpenseActivity;
 import com.example.appdoan.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ public class HomeFragment extends Fragment {
 
         // Xử lý sự kiện khi click vào nút btnExpense
         binding.btnExpense.setOnClickListener(v -> {
-            // Chuyển sang màn hình nhập khoản chi (ví dụ: AddExpenseActivity)
-            Intent intent = new Intent(getActivity(), TransactionExpenseCreateActivity.class);
+            // Chuyển sang màn hình nhập khoản chi
+            Intent intent = new Intent(getActivity(), TransactionExpenseActivity.class);
             startActivity(intent);
         });
 

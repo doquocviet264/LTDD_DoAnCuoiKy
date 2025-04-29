@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/title_background"
+    android:background="@drawable/gradient_color_background"
     tools:context=".Activity.ProfileActivity">
 
     <LinearLayout
@@ -79,6 +79,7 @@
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/custom_input"
                 android:drawableStart="@drawable/ic_edit"
                 android:hint="Họ và tên đệm"
                 android:padding="16dp" />
@@ -92,6 +93,7 @@
                 android:background="@drawable/edittext_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/custom_input"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:drawableStart="@drawable/ic_edit"
@@ -104,14 +106,15 @@
 
             <EditText
                 android:id="@+id/avatar"
-                android:background="@drawable/edittext_background"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/custom_input"
+                android:background="@drawable/edittext_background"
                 android:drawableStart="@drawable/image"
                 android:hint="Avatar"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <Space
                 android:layout_width="match_parent"

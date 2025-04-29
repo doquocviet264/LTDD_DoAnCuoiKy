@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/gradient_color_background"
-    tools:context=".CategoryAddActivity">
+    android:orientation="vertical"
+    tools:context=".CategoryUpdateActivity">
 
     <LinearLayout
         android:id="@+id/titleAndBack"
@@ -15,18 +15,15 @@
         android:orientation="vertical"
         android:background="@drawable/title_background"
         >
-
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:id="@+id/cardCreationHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:weightSum="1">
             <ImageButton
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_weight="0.01"
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -35,16 +32,25 @@
                 android:src="@drawable/ic_back"/>
 
             <TextView
-                android:id="@+id/cardCreationTitle"
+                android:layout_weight="0.98"
+                android:id="@+id/topTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Tạo mới danh mục"
+                android:textColor="#B0B0B0"
+                android:text="Chỉnh sửa danh mục"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="40dp"
-                android:textSize="22sp"
-                android:textColor="#B0B0B0"/>
+                android:textSize="22sp" />
+
+            <ImageButton
+                android:layout_weight="0.01"
+                android:id="@+id/btnDeleteCategory"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/back_btn_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_delete"/>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -75,15 +81,16 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"/>
 
+
                 <EditText
-                    android:id="@+id/cate_name"
-                    android:inputType="text"
+                    android:id="@+id/cate_name_update"
+                    style="@style/custom_input"
                     android:hint="Tên danh mục"
+                    android:drawableStart="@drawable/ic_edit"
+                    android:background="@drawable/edittext_background"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:background="@drawable/edittext_background"
-                    style="@style/custom_input" />
-
+                    android:inputType="text" />
 
                 <LinearLayout
                     android:weightSum="1"
@@ -96,14 +103,14 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Chọn màu"
-                        android:textSize="15dp"
+                        android:text="Màu sắc"
                         android:textColor="@color/white"
+                        android:textSize="15dp"
                         android:textStyle="bold"/>
 
                     <ImageButton
                         android:layout_weight="0.01"
-                        android:id="@+id/catcolor"
+                        android:id="@+id/cate_color_update"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/back_btn_background"
@@ -112,18 +119,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chọn loại danh mục"
+                    android:text="Loại danh mục"
                     android:textSize="15dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"/>
 
                 <Spinner
-                    android:id="@+id/cat_type"
+                    android:id="@+id/cate_type_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_spinner"
-                    android:hint="Chọn danh mục giao dịch"
-                    android:textColorHint="@color/white"
                     android:padding="16dp" />
 
                 <TextView
@@ -140,24 +145,24 @@
                     android:inputType="textMultiLine"
                     android:lines="5"
                     android:scrollbars="vertical"
-                    android:id="@+id/cate_desc"
+                    android:id="@+id/cate_desc_update"
                     android:hint="Mô tả"
+                    android:background="@drawable/edittext_background"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:background="@drawable/edittext_background"
                     style="@style/custom_input" />
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thêm danh mục"
+                android:text="Lưu thay đổi"
                 android:backgroundTint="#2E2E2E"
                 android:textColor="@color/white"
                 android:padding="18dp"
                 android:layout_marginTop="32dp"
                 android:textSize="15sp"
-                android:id="@+id/categoryCreate"/>
+                android:id="@+id/btnCategoryUpdate"/>
         </LinearLayout>
     </ScrollView>
 

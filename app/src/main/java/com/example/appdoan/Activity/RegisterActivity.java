@@ -1,12 +1,10 @@
 package com.example.appdoan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
 
 
@@ -19,7 +17,7 @@ import retrofit2.Retrofit;
 import com.example.appdoan.API.HTTPRequest;
 import com.example.appdoan.API.HTTPService;
 import com.example.appdoan.Container.Request.RegisterRequest;
-import com.example.appdoan.Container.Response.RegisterResponse;
+import com.example.appdoan.Container.Response.RegisterUserResponse;
 import com.example.appdoan.databinding.ActivityRegisterBinding;
 
 
@@ -62,13 +60,13 @@ public class RegisterActivity extends AppCompatActivity {
                 showToast("Địa chỉ email không hợp lệ!");
             } else {
                 RegisterRequest registerUserRequest = new RegisterRequest(username, password, firstname, lastname, email, "USER", "");
-                Call<RegisterResponse> call = httpRequest.register(registerUserRequest);
+                Call<RegisterUserResponse> call = httpRequest.register(registerUserRequest);
 
-                call.enqueue(new Callback<RegisterResponse>() {
+                call.enqueue(new Callback<RegisterUserResponse>() {
                     @Override
-                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                    public void onResponse(Call<RegisterUserResponse> call, Response<RegisterUserResponse> response) {
                         if (response.isSuccessful()) {
-                            RegisterResponse registerUserResponse = response.body();
+                            RegisterUserResponse registerUserResponse = response.body();
                             if ("Tài khoản đã tồn tại. Vui lòng nhập lại!".equals(registerUserResponse.getMessage())) {
                                 showToast("Username đã tồn tại. Vui lòng nhập lại!");
                             } else if ("Email đã tồn tại. Vui lòng nhập lại!".equals(registerUserResponse.getMessage())) {
@@ -83,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                    public void onFailure(Call<RegisterUserResponse> call, Throwable t) {
                         showToast("Lỗi kết nối!");
                     }
                 });

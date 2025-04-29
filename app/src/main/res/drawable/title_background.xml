@@ -1,44 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Gradient nền chính (tương tự background của trang) -->
-    <item>
-        <shape android:shape="rectangle">
-            <gradient
-                android:startColor="#70799558"
-                android:centerColor="#19191b"
-                android:endColor="#0c0c0c"
-                android:type="radial"
-                android:gradientRadius="110%"
-                android:centerX="0.2"
-                android:centerY="0.25"/>
-            <!-- Giữ các góc bo tròn như @drawable/gr -->
-            <corners
-                android:topLeftRadius="0dp"
-                android:topRightRadius="0dp"
-                android:bottomLeftRadius="30dp"
-                android:bottomRightRadius="30dp" />
-        </shape>
-    </item>
-
-    <!-- Hiệu ứng ánh sáng màu cam (tương tự background của trang) -->
-    <item>
-        <shape android:shape="rectangle">
-            <gradient
-                android:startColor="#50ff9800"
-                android:centerColor="@android:color/transparent"
-                android:endColor="@android:color/transparent"
-                android:type="radial"
-                android:gradientRadius="110%"
-                android:centerX="0.8"
-                android:centerY="0.6"/>
-            <!-- Giữ các góc bo tròn như @drawable/gr -->
-            <corners
-                android:topLeftRadius="0dp"
-                android:topRightRadius="0dp"
-                android:bottomLeftRadius="30dp"
-                android:bottomRightRadius="30dp" />
-        </shape>
-    </item>
-
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp" />
+    <solid android:color="#1c2019" />
+</shape>

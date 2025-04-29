@@ -3,6 +3,9 @@ package com.example.appdoan.Helper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
+
 import com.example.appdoan.R;
 
 import java.util.concurrent.Executor;
@@ -21,6 +24,7 @@ public class LoadingDialog {
         builder.setCancelable(false);
         alertDialog = builder.create();
         alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
     }
 
     public void startLoadingDialog() {

@@ -15,20 +15,10 @@ public class MyInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request originalRequest = chain.request();
 
-        // Lấy token từ shared preferences
         MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance();
         String token = mySharedPreferences.getToken();
-
-        // Kiểm tra nếu token không rỗng thì thêm vào header
-        if (token != null && !token.isEmpty()) {
-            // Thêm "Authorization" header vào request
-            Request request = originalRequest.newBuilder()
-                    .addHeader("Authorization", "Bearer " + token) // Thêm khoảng trắng giữa "Bearer" và token
-                    .build();
-            return chain.proceed(request);
-        }
-
-        // Nếu không có token, tiếp tục request gốc mà không thêm header
-        return chain.proceed(originalRequest);
+        Request request = originalRequest.newBuilder()
+                .addHeader("Authorization", "Bearer" + token).build();
+        return chain.proceed(request);
     }
 }

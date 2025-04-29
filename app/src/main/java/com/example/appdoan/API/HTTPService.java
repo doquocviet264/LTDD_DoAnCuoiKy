@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HTTPService {
-    private static final String BASE_URL = "http://192.168.1.39:8080/";
+    private static final String BASE_URL = "http://192.168.1.3:8080/";
     private static Retrofit retrofit = null; // Đảm bảo chỉ tạo một instance
     private static OkHttpClient client;
 
