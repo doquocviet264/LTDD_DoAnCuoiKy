@@ -38,7 +38,7 @@
                 android:id="@+id/cat_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorSupportText"
+                android:textColor="@color/white"
                 android:textStyle="italic"
                 android:textSize="14sp"
                 android:text="categoryDescription"/>

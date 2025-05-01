@@ -1,6 +1,7 @@
 package com.example.appdoan.API;
 
 import com.example.appdoan.Container.Request.CategoryRequest;
+import com.example.appdoan.Container.Request.GoalRequest;
 import com.example.appdoan.Container.Request.LoginRequest;
 import com.example.appdoan.Container.Request.RegisterRequest;
 import com.example.appdoan.Container.Request.UpdateProfileRequest;
@@ -47,5 +48,17 @@ public interface HTTPRequest {
 
     @PUT("api/category/update/{id}")
     Call<ApiResponse<Object>> updateCategory(@Path("id") Long id, @Body CategoryRequest categoryRequest);
+    // ======== goal
+    @GET("api/goal/all")
+    Call<ApiResponse<Object>> getAllGoal();
+
+    @POST("api/goal/add")
+    Call<ApiResponse<Object>> addGoal(@Body GoalRequest goalRequest);
+
+    @PUT("api/goal/update/{id}")
+    Call<ApiResponse<Object>> updateGoal(@Body GoalRequest goalRequest,@Path("id") Long id);
+
+    @DELETE("api/goal/delete/{id}")
+    Call<ApiResponse<Object>> deleteGoal(@Path("id") Long id);
 
 }

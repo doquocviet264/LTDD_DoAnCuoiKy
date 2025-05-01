@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         loadingDialog.startLoadingDialog();
-        loadingDialog.setDialogDuration(2000);
+        loadingDialog.setDialogDuration(3000);
 
         LoginRequest loginRequest = new LoginRequest(username, password);
         Call<ApiResponse<LoginResponse>> call = httpRequest.login(loginRequest);

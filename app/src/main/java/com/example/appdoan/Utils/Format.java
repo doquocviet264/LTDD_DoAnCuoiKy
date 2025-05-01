@@ -1,6 +1,5 @@
-package com.example.appdoan.Helper;
+package com.example.appdoan.Utils;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

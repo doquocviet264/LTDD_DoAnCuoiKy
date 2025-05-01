@@ -9,19 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appdoan.API.HTTPRequest;
 import com.example.appdoan.API.HTTPService;
 import com.example.appdoan.Activity.CategoryActivity;
 import com.example.appdoan.Container.Request.CategoryRequest;
 import com.example.appdoan.Container.Response.ApiResponse;
-import com.example.appdoan.Helper.Format;
+import com.example.appdoan.Utils.Format;
 import com.example.appdoan.Model.CategoryModel;
 import com.example.appdoan.databinding.ActivityCategoryUpdateBinding;
 import com.skydoves.colorpickerview.ColorPickerDialog;

@@ -59,6 +59,7 @@ public class CategoryExpenseFragment extends Fragment {
     }
 
     private void refreshData() {
+        getExpenseCategory();
         filterCategoryExpense(currentQuery);
         swipeRefreshLayout.setRefreshing(false);
     }
