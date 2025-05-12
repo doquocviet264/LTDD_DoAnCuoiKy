@@ -1,5 +1,6 @@
 package com.example.appdoan.API;
 
+import com.example.appdoan.Container.Request.CardRequest;
 import com.example.appdoan.Container.Request.CategoryRequest;
 import com.example.appdoan.Container.Request.GoalRequest;
 import com.example.appdoan.Container.Request.LoginRequest;
@@ -8,6 +9,7 @@ import com.example.appdoan.Container.Request.UpdateProfileRequest;
 import com.example.appdoan.Container.Response.ApiResponse;
 import com.example.appdoan.Container.Response.LoginResponse;
 import com.example.appdoan.Container.Response.RegisterUserResponse;
+import com.example.appdoan.Model.CardModel;
 import com.example.appdoan.Model.CategoryModel;
 
 import java.util.List;
@@ -60,5 +62,18 @@ public interface HTTPRequest {
 
     @DELETE("api/goal/delete/{id}")
     Call<ApiResponse<Object>> deleteGoal(@Path("id") Long id);
+    // ============== card
+    @GET("api/card/all")
+    Call<List<CardModel>> getAllCard();
+
+    @POST("api/card/add")
+    Call<ApiResponse<Object>> addCard(@Body CardRequest cardRequest);
+
+    @PUT("api/card/update/{id}")
+    Call<ApiResponse<Object>> updateCard(@Body CardRequest cardRequest, @Path("id") Long id);
+
+    @DELETE("api/card/delete/{id}")
+    Call<ApiResponse<Object>> deleteCard(@Path("id") Long id);
+
 
 }
