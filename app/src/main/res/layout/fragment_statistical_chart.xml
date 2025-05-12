@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_color_background"
+    tools:context=".StatisticalChartFragment">
+
+    <LinearLayout
+        android:id="@+id/titleAndBack"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:background="@drawable/title_background"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BIỂU ĐỒ THỐNG KÊ"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:weightSum="1">
+
+            <com.google.android.material.tabs.TabLayout
+                android:background="@drawable/back_btn_background"
+                android:id="@+id/tabLayoutChart"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.98"
+                app:tabGravity="fill"
+                app:tabIndicator="@drawable/selected"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/backgroundBlack"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorGravity="stretch"
+                app:tabInlineLabel="true"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/backgroundBlack"
+                app:tabTextColor="@color/colorSupportText">
+
+            </com.google.android.material.tabs.TabLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@+id/titleAndBack"
+        android:id="@+id/viewPagerChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</RelativeLayout>

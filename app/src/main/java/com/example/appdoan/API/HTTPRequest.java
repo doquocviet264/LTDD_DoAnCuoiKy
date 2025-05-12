@@ -75,5 +75,23 @@ public interface HTTPRequest {
     @DELETE("api/card/delete/{id}")
     Call<ApiResponse<Object>> deleteCard(@Path("id") Long id);
 
+    // lấy dữ liệu để vẽ biểu đồ
+    @GET("api/transaction/totalincomeinyear")
+    Call<ApiResponse<Object>> getTotalIncomeInYear();
+
+    @GET("api/transaction/totalexpenseinyear")
+    Call<ApiResponse<Object>> getTotalExpenseInYear();
+
+    @GET("api/transaction/listtotalincomebycard")
+    Call<ApiResponse<Object>> listTotalIncomeByCard();
+
+    @GET("api/transaction/listtotalexpensebycard")
+    Call<ApiResponse<Object>> listTotalExpenseByCard();
+
+    @GET("api/transaction/totalbycategoryincomeinmonth")
+    Call<ApiResponse<Object>> listTotalByCategoryIncome();
+
+    @GET("api/transaction/totalbycategoryexpenseinmonth")
+    Call<ApiResponse<Object>> listTotalByCategoryExpense();
 
 }

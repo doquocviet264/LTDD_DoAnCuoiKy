@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thu nhập và chi tiêu theo danh mục trong tháng"
+            android:layout_margin="5dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh mục thu nhập"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartCategoryIncome"
+            android:layout_width="match_parent"
+            android:layout_height="245dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh mục chi tiêu"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartCategoryExpense"
+            android:layout_width="match_parent"
+            android:layout_height="245dp" />
+    </LinearLayout>
+</ScrollView>
