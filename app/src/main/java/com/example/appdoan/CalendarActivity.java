@@ -70,8 +70,8 @@ public class CalendarActivity extends AppCompatActivity {
         int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1; // Chủ nhật = 0, Thứ 2 = 1,...
         cal.add(Calendar.DAY_OF_MONTH, -firstDayOfWeek);
 
-        // Tạo danh sách 42 ngày (6 tuần)
-        while (days.size() < 42) {
+        // Tạo danh sách 35 ngày (5 tuần)
+        while (days.size() < 35) {
             days.add(cal.getTime());
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
