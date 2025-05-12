@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TransactionUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransactionInformationActivity"
+            android:exported="false" />
+        <activity
             android:name=".CategoryUpdateActivity"
             android:exported="false" />
         <activity

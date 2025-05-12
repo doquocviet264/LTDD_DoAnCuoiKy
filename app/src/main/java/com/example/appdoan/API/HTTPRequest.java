@@ -5,6 +5,7 @@ import com.example.appdoan.Container.Request.CategoryRequest;
 import com.example.appdoan.Container.Request.GoalRequest;
 import com.example.appdoan.Container.Request.LoginRequest;
 import com.example.appdoan.Container.Request.RegisterRequest;
+import com.example.appdoan.Container.Request.TransactionRequest;
 import com.example.appdoan.Container.Request.UpdateProfileRequest;
 import com.example.appdoan.Container.Response.ApiResponse;
 import com.example.appdoan.Container.Response.LoginResponse;
@@ -93,5 +94,32 @@ public interface HTTPRequest {
 
     @GET("api/transaction/totalbycategoryexpenseinmonth")
     Call<ApiResponse<Object>> listTotalByCategoryExpense();
+    // ============== transaction
+    @GET("api/transaction/income")
+    Call<ApiResponse<Object>> getIncomeTransaction();
+
+    @GET("api/transaction/expense")
+    Call<ApiResponse<Object>> getExpenseTransaction();
+
+    @GET("api/transaction/alltransactionintoday")
+    Call<ApiResponse<Object>> getAllTransactionToday();
+
+    @GET("api/transaction/allofweek")
+    Call<ApiResponse<Object>> getAllTransactionOfWeek();
+
+    @GET("api/transaction/allincurrentmonth")
+    Call<ApiResponse<Object>> getAllTransactionInCurrentMonth();
+
+    @POST("api/transaction/add/income/{idCategory}/{idCard}")
+    Call<ApiResponse<Object>> addTransactionIncome(@Path("idCategory") Long idCategory, @Path("idCard") Long idCard, @Body TransactionRequest transactionRequest);
+
+    @POST("api/transaction/add/expense/{idCategory}/{idCard}")
+    Call<ApiResponse<Object>> addTransactionExpense(@Path("idCategory") Long idCategory, @Path("idCard") Long idCard, @Body TransactionRequest transactionRequest);
+
+    @PUT("api/transaction/update/{idCategory}/{idTran}")
+    Call<ApiResponse<Object>> updateTransaction(@Path("idCategory") Long idCategory, @Path("idTran") Long idTran, @Body TransactionRequest transactionRequest);
+
+    @DELETE("api/transaction/delete/{idTran}")
+    Call<ApiResponse<Object>> deleteTranscation(@Path("idTran") Long idTran);
 
 }

@@ -81,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_edit"
                 android:hint="Tên giao dịch"
+                style="@style/custom_input"
                 android:background="@drawable/edittext_background"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
@@ -96,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_money"
                 android:hint="Số tiền giao dịch"
+                style="@style/custom_input"
                 android:inputType="numberDecimal"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
@@ -123,7 +125,17 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
-
+            <EditText
+                android:id="@+id/transactionIncomeLocationCreate"
+                style="@style/custom_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_location"
+                android:hint="Địa điểm giao dịch"
+                android:padding="16dp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -135,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_edit"
                 android:hint="Mô tả chi tiêt"
+                style="@style/custom_input"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:background="@drawable/edittext_background"
@@ -153,6 +166,7 @@
                 android:drawableStart="@drawable/ic_date"
                 android:focusable="false"
                 android:hint="Ngày giao dịch"
+                style="@style/custom_input"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:background="@drawable/edittext_background"
@@ -167,7 +181,7 @@
                 android:padding="18dp"
                 android:layout_marginTop="32dp"
                 android:textSize="15sp"
-                android:id="@+id/add_btn"/>
+                android:id="@+id/btnTransactionIncomeCreate"/>
 
         </LinearLayout>
     </ScrollView>

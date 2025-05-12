@@ -9,4 +9,20 @@
         <item name="android:paddingEnd">20dp</item>
         <item name="android:textSize">18dp</item>
     </style>
+    <style name="transaction_information_text_view_content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">5sp</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="transaction_information_text_view_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">20sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
