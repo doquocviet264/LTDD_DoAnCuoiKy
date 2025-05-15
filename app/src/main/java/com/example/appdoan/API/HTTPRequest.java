@@ -114,6 +114,12 @@ public interface HTTPRequest {
 
     @GET("api/transaction/totalbycategoryexpenseinmonth")
     Call<ApiResponse<Object>> listTotalByCategoryExpense();
+    // ======= notification
+    @GET("api/notification/all")
+    Call<ApiResponse<Object>> listNotification();
+
+    @DELETE("api/notification/delete/{id}")
+    Call<ApiResponse<Object>> deleteNotification(@Path("id") Long idNoti);
     // ============== transaction
     @GET("api/transaction/income")
     Call<ApiResponse<Object>> getIncomeTransaction();

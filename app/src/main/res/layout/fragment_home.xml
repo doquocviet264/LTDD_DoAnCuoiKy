@@ -99,10 +99,10 @@
                     app:layout_constraintVertical_bias="0.185" />
 
                 <ImageView
-                    android:id="@+id/imageView"
                     android:layout_width="38dp"
                     android:layout_height="35dp"
                     android:layout_margin="16dp"
+                    android:id="@+id/btnNotification"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:foreground="?attr/selectableItemBackground"

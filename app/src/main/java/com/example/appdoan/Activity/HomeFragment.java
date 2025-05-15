@@ -1,24 +1,32 @@
 package com.example.appdoan.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.appdoan.API.HTTPRequest;
 import com.example.appdoan.API.HTTPService;
 import com.example.appdoan.Adapter.CryptoWallerAdapter;
+import com.example.appdoan.Adapter.NotificationAdapter;
 import com.example.appdoan.Adapter.TransactionAdapter;
 import com.example.appdoan.Container.Response.ApiResponse;
 import com.example.appdoan.Container.Response.RegisterUserResponse;
 import com.example.appdoan.Model.CryptoWallet;
+import com.example.appdoan.Model.NotificationModel;
 import com.example.appdoan.Model.TransactionModel;
 import com.example.appdoan.R;
 import com.example.appdoan.TransactionExpenseActivity;
@@ -93,6 +101,62 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(requireContext(), "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
             }
         });
+//        binding.btnNotification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Dialog dialog = new Dialog(requireContext());
+//                dialog.setContentView(R.layout.activity_notification_dialog);
+//                dialog.setTitle("Thông báo");
+//
+//                // Set dialog width and height
+//                Window dialogWindow = dialog.getWindow();
+//                if (dialogWindow != null) {
+//                    WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes();
+//                    layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT; // Set width to match parent
+//                    layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT; // Set height to wrap content
+//                    dialogWindow.setAttributes(layoutParams);
+//                    dialogWindow.setGravity(Gravity.TOP);
+//                }
+
+//                Retrofit retrofit = HTTPService.getInstance();
+//                HTTPRequest httpRequest = retrofit.create(HTTPRequest.class);
+//                Call<ApiResponse<Object>> call = httpRequest.listNotification();
+//                call.enqueue(new Callback<ApiResponse<Object>>() {
+//                    @Override
+//                    public void onResponse(Call<ApiResponse<Object>> call, Response<ApiResponse<Object>> response) {
+//                        if(response.isSuccessful())
+//                        {
+//                            ApiResponse apiResponse = response.body();
+//                            if(apiResponse.getStatus() == 101)
+//                            {
+//                                Toast.makeText(requireContext(), apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                                notificationCount.setText("0");
+//                            }
+//                            else
+//                            {
+//                                Gson gson = new Gson();
+//                                String jsonData = gson.toJson(apiResponse.getData());
+//                                mListNotification = gson.fromJson(jsonData, new TypeToken<List<NotificationModel>>(){}.getType());
+//                                int count = mListNotification.size();
+//                                String countText = String.valueOf(count);
+//                                notificationCount.setText(countText);
+//                                RecyclerView rcvNotification = dialog.findViewById(R.id.notificationRecyclerView);
+//                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+//                                rcvNotification.setLayoutManager(linearLayoutManager);
+//
+//                                DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+//                                rcvNotification.addItemDecoration(itemDecoration);
+//                                NotificationAdapter notificationAdapter = new NotificationAdapter(requireContext(), mListNotification);
+//                                rcvNotification.setAdapter(notificationAdapter);
+//                                dialog.show();
+//                            }
+//                        }
+//                    }
+//                    @Override
+//                    public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
+//                    }
+//                });
+//            }
     }
     private void loadTodayTransactions() {
         Retrofit retrofit = HTTPService.getInstance();

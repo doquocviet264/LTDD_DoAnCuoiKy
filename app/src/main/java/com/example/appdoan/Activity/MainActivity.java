@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.appdoan.R;
+import com.example.appdoan.StatisticalChartFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout bottomBtn4 = findViewById(R.id.bottomBtn4);
 
         bottomBtn1.setOnClickListener(v -> loadFragment(new HomeFragment()));
-//        bottomBtn2.setOnClickListener(v -> loadFragment(new AnotherFragment()));
+        bottomBtn2.setOnClickListener(v -> loadFragment(new StatisticalChartFragment()));
         bottomBtn3.setOnClickListener(v -> loadFragment(new CardFragment()));
         bottomBtn4.setOnClickListener(v -> loadFragment(new SettingFragment()));
     }

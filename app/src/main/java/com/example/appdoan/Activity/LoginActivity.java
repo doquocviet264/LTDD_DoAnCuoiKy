@@ -16,6 +16,7 @@ import com.example.appdoan.API.HTTPService;
 import com.example.appdoan.Container.Request.LoginRequest;
 import com.example.appdoan.Container.Response.ApiResponse;
 import com.example.appdoan.Container.Response.LoginResponse;
+import com.example.appdoan.ForgotPasswordActivity;
 import com.example.appdoan.Helper.LoadingDialog;
 import com.example.appdoan.Helper.MySharedPreferences;
 import com.example.appdoan.R;
@@ -50,9 +51,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initListeners() {
 
-//        binding.forgotpass.setOnClickListener(view ->
-//                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class))
-//        );
+        binding.txtForgotPassword.setOnClickListener(view ->
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class))
+        );
 
         binding.txtResgiter.setOnClickListener(view ->
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class))
