@@ -9,19 +9,27 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.appdoan.API.HTTPRequest;
 import com.example.appdoan.API.HTTPService;
 import com.example.appdoan.Adapter.CryptoWallerAdapter;
+import com.example.appdoan.Adapter.TransactionAdapter;
+import com.example.appdoan.Container.Response.ApiResponse;
 import com.example.appdoan.Container.Response.RegisterUserResponse;
 import com.example.appdoan.Model.CryptoWallet;
+import com.example.appdoan.Model.TransactionModel;
 import com.example.appdoan.R;
 import com.example.appdoan.TransactionExpenseActivity;
 import com.example.appdoan.TransactionIncomeActivity;
 import com.example.appdoan.databinding.FragmentHomeBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +39,14 @@ import retrofit2.Retrofit;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-
+    private List<TransactionModel> mListTransaction;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         loadUserProfile();
+//        loadTransactionSummary();
+        loadTodayTransactions();
 
         // Xử lý sự kiện khi click vào nút btnExpense
         binding.btnExpense.setOnClickListener(v -> {
@@ -81,6 +91,71 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<RegisterUserResponse> call, Throwable t) {
                 Toast.makeText(requireContext(), "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void loadTodayTransactions() {
+        Retrofit retrofit = HTTPService.getInstance();
+        HTTPRequest httpRequest = retrofit.create(HTTPRequest.class);
+        Call<ApiResponse<Object>> call = httpRequest.getAllTransactionToday();
+        call.enqueue(new Callback<ApiResponse<Object>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Object>> call, Response<ApiResponse<Object>> response) {
+                ApiResponse<Object> apiResponse = response.body();
+                if(apiResponse.getStatus() == 101)
+                {
+                    Toast.makeText(requireContext(),"Chưa có giao dịch để hiển thị!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Gson gson = new Gson();
+                    String jsonData = gson.toJson(apiResponse.getData());
+                    mListTransaction = gson.fromJson(jsonData, new TypeToken<List<TransactionModel>>(){}.getType());
+                    Collections.reverse(mListTransaction);
+                    TransactionAdapter transactionAdapter = new TransactionAdapter(mListTransaction,  requireContext());
+                    binding.list.setAdapter(transactionAdapter);
+                }
+            }
+            @Override
+            public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
+            }
+        });
+    }
+
+    private void loadTransactionSummary() {
+        Retrofit retrofit = HTTPService.getInstance();
+        HTTPRequest httpRequest = retrofit.create(HTTPRequest.class);
+
+        // Gọi API tổng thu nhập tháng hiện tại
+        Call<ApiResponse<Object>> incomeCall = httpRequest.getTotalIncomeByCurrentMonth();
+        incomeCall.enqueue(new Callback<ApiResponse<Object>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Object>> call, Response<ApiResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Object data = response.body().getData();
+                    binding.txtIncome.setText(data.toString() + " đ");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
+                Toast.makeText(requireContext(), "Không thể lấy tổng thu nhập", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Gọi API tổng chi tiêu tháng hiện tại
+        Call<ApiResponse<Object>> expenseCall = httpRequest.getTotalIncByCurrentMonth();
+        expenseCall.enqueue(new Callback<ApiResponse<Object>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Object>> call, Response<ApiResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Object data = response.body().getData();
+                    binding.txtExpense.setText(data.toString() + " đ");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
+                Toast.makeText(requireContext(), "Không thể lấy tổng chi tiêu", Toast.LENGTH_SHORT).show();
             }
         });
     }

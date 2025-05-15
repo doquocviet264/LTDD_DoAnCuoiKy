@@ -212,7 +212,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/txtIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -230,13 +230,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:id="@+id/txtExpense"
                     android:text="$123,230"
                     android:textColor="@color/red"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtIncome"
                     app:layout_constraintEnd_toEndOf="@+id/textView4"
-                    app:layout_constraintTop_toTopOf="@+id/textView5" />
+                    app:layout_constraintTop_toTopOf="@+id/txtIncome" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -363,7 +364,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="358dp"
+                android:layout_height="145dp"
                 android:paddingStart="8dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="8dp"
