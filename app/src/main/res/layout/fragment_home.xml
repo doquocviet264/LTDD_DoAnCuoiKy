@@ -38,7 +38,7 @@
                 android:background="@drawable/dark_bg">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivAvatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -56,17 +56,18 @@
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintStart_toEndOf="@+id/ivAvatar"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/email"
                     android:text="emailcuaban@gmail.com"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -78,8 +79,8 @@
                     android:text="Số tiền của bạn"
                     android:textColor="@color/white"
                     android:textSize="17sp"
-                    app:layout_constraintStart_toStartOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                    app:layout_constraintStart_toStartOf="@+id/ivAvatar"
+                    app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,6 +108,19 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:src="@drawable/ic_notification"  />
 
+                <TextView
+                    android:id="@+id/fullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:text="Full name"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -133,6 +147,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btnIncome"
                     style="@android:style/Widget.Button"
                     android:layout_weight="0.5"
                     android:background="@drawable/orange_dark_button"
